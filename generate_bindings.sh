@@ -33,16 +33,16 @@ TYPE_LOWER=$(echo ${TYPE} | tr '[:upper:]' '[:lower:]')
 # FILENAME="${TYPE_LOWER}_deployed.go"
 
 
-mkdir -p bin
-mkdir -p generated_bindings
-OUTPUT_DIR= generated_bindings
+mkdir -p dist/
+mkdir -p sdk/go/
+OUTPUT_DIR=sdk/go/
 
 CWD=$(pwd)
 # Build contracts
 # cd ${CONTRACTS_PATH}
 forge inspect "${NAME}" abi > ${OUTPUT_DIR}/${TYPE}.abi
 forge inspect "${NAME}" bytecode > ${OUTPUT_DIR}/${TYPE}.bin
-forge inspect "${NAME}" deployedBytecode > ${CWD}/bin/${TYPE_LOWER}_deployed.hex
+forge inspect "${NAME}" deployedBytecode > ${CWD}/dist/${TYPE_LOWER}_deployed.hex
 
 # Run ABIGEN
 #cd ${CWD}
